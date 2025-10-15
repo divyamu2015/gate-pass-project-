@@ -43,7 +43,7 @@ class _StudentExcelUploaderState extends State<StudentExcelUploader> {
 
     try {
       /// ✅ 1. Parse Excel for UI
-      final excel = Excel.decodeBytes(fileBytes!);
+      final excel = Excel.decodeBytes(fileBytes as List<int>);
       final sheetName = excel.tables.keys.first;
       final sheet = excel.tables[sheetName];
 
@@ -64,7 +64,7 @@ class _StudentExcelUploaderState extends State<StudentExcelUploader> {
       );
 
       request.files.add(
-        http.MultipartFile.fromBytes('file', fileBytes, filename: fileName),
+        http.MultipartFile.fromBytes('file', fileBytes as List<int>, filename: fileName),
       );
 
       var response = await request.send();

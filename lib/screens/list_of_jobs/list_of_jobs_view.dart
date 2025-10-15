@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gate_pass_project/constant_uri.dart';
 import 'package:gate_pass_project/screens/list_of_jobs/list_of_jobs_model.dart';
 import 'package:gate_pass_project/screens/list_of_jobs/list_of_jobs_service.dart';
+import 'package:gate_pass_project/screens/view_job_details/job_details_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CompanyListView extends StatefulWidget {
-  const CompanyListView({super.key,required this.userId});
+  const CompanyListView({super.key, required this.userId});
   final int userId;
 
   @override
@@ -13,88 +15,136 @@ class CompanyListView extends StatefulWidget {
 
 class _CompanyListViewState extends State<CompanyListView> {
   late Future<List<CompanyModel>> futureCompanies;
-
+  String? storedCompanyId;
   @override
   void initState() {
     super.initState();
     futureCompanies = fetchCompanies();
+     loadStoredCompanyId();
+    
+  }
+ Future<void> storeCompanyId(String companyId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('id', companyId);
+    print('ID stored: $companyId');
+    setState(() => storedCompanyId = companyId);
+  }
+
+  Future<void> loadStoredCompanyId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? companyId = prefs.getString('id');
+    print("Retrieved Company ID: $companyId");
+    setState(() => storedCompanyId = companyId);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Companies'),
-        backgroundColor: Colors.deepPurple,
+        title: const Text('Track your Companies'),
+        backgroundColor: Colors.indigo[200],
       ),
-      body: FutureBuilder<List<CompanyModel>>(
-        future: futureCompanies,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text("Error: ${snapshot.error}"));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text("No companies found"));
-          }
+      body: Container(
+        decoration: BoxDecoration(
+          // image: DecorationImage(
+          //   image: AssetImage(
+          //     'assets/images/764921_1-01.jpg',
+          //   ), // Path to your image
+          //   fit: BoxFit.cover, // Cover entire background
+          // ),
+        ),
+        child: FutureBuilder<List<CompanyModel>>(
+          future: futureCompanies,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text("Error: ${snapshot.error}"));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return const Center(child: Text("No companies found"));
+            }
 
-          final companies = snapshot.data!;
+            final companies = snapshot.data!;
 
-          return ListView.builder(
-            padding: const EdgeInsets.all(12),
-            itemCount: companies.length,
-            itemBuilder: (context, index) {
-              final company = companies[index];
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 5,
-                margin: const EdgeInsets.symmetric(vertical: 8),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(12),
-                  // Display the logo
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.grey[200],
-                    radius: 25,
-                    backgroundImage: NetworkImage(
-                      "$imageBaseUrl${company.logo}",
-                    ),
-                    onBackgroundImageError: (exception, stackTrace) {
-                      // Fallback to a default icon if the image fails to load
-                      return;
-                    },
-                    child: company.logo.isEmpty
-                        ? const Icon(
-                            Icons.business,
-                            size: 40,
-                            color: Colors.grey,
+            return ListView.builder(
+              padding: const EdgeInsets.all(12),
+              itemCount: companies.length,
+              itemBuilder: (context, index) {
+                final company = companies[index];
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  elevation: 5,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(12),
+                    // Display the logo
+                    leading:
+                        company.logo.isEmpty || company.logo == "companyLogo"
+                        ? CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            radius: 25,
+                            child: Icon(
+                              Icons.business,
+                              size: 40,
+                              color: Colors.white,
+                            ),
                           )
-                        : null,
-                  ),
-                  // Display the name
-                  title: Text(
-                    company.name,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple,
+                        : CircleAvatar(
+                            backgroundColor: Colors.grey[200],
+                            radius: 25,
+                            backgroundImage: NetworkImage(
+                              "$imageBaseUrl${company.logo}",
+                            ),
+                            onBackgroundImageError: (exception, stackTrace) {
+                              // Fallback to a default icon if the image fails to load
+                              return;
+                            },
+                            child: company.logo.isEmpty
+                                ? const Icon(
+                                    Icons.business,
+                                    size: 40,
+                                    color: Colors.grey,
+                                  )
+                                : null,
+                          ),
+                    // Display the name
+                    title: Text(
+                      company.name,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple,
+                      ),
                     ),
+                    // Display the description
+                    subtitle: Text(
+                      company.description,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
+                      ),
+                    ),
+                   onTap: () async {
+                      await storeCompanyId(company.id.toString());
+                      print("Tapped on ${company.name}");
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => JobDetailScreen(
+                            companyName: company.name,
+                            logo: "$imageBaseUrl${company.logo}",
+                            companyId: company.id,
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                  // Display the description
-                  subtitle: Text(
-                    company.description,
-                    style: const TextStyle(fontSize: 14, color: Colors.black54),
-                  ),
-                  onTap: () {
-                    // Optional: Add navigation or other actions here.
-                    print("Tapped on ${company.name}");
-                  },
-                ),
-              );
-            },
-          );
-        },
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

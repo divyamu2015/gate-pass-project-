@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gate_pass_project/authentication/student_auth/bloc/student_login_bloc.dart';
-import 'package:gate_pass_project/authentication/student_auth/student_login_view.dart';
+//import 'package:gate_pass_project/authentication/student_auth/student_login_view.dart';
 import 'package:gate_pass_project/authentication/tutur_auth/bloc/tutor_login_bloc.dart';
+import 'package:gate_pass_project/screens/splash_screen.dart';
+import 'package:gate_pass_project/screens/view_job_details/bloc/job_details_bloc.dart';
+//import 'package:gate_pass_project/screens/home_page/home_page.dart';
 //import 'package:gate_pass_project/authentication/student_auth/student_login_view.dart';
 
 void main() {
@@ -19,6 +22,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => StudentLoginBloc()),
         BlocProvider(create: (context) => TutorLoginBloc()),
+        BlocProvider(
+          create: (context) => JobDetailsBloc(),
+        //  child: Container(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -42,8 +49,10 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
         home:
-            //TutorLoginPage(),
-            StudentLoginPage(),
+           // TutorLoginPage(),
+             SplashScreen(),
+           // JobRulesReg(),
+          // HomeScreen()
       ),
     );
   }

@@ -109,8 +109,8 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                   );
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => HomeScreen(studId: userId!,
-                      studentId: studentId!,),
+                      builder: (context) =>
+                          HomeScreen(studId: userId!, studentId: studentId!),
                     ),
                   );
                 });
@@ -138,8 +138,9 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 173, 108, 243),
-                Color.fromARGB(255, 103, 150, 231),
+                Color.fromARGB(255, 150, 179, 243),
+                Color.fromARGB(255, 123, 160, 240),
+                // Color.fromARGB(255, 103, 150, 231),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -278,18 +279,6 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                               ).animate().scale(duration: 500.ms),
 
                               const SizedBox(height: 15),
-
-                              // Forgot password
-                              // TextButton(
-                              //   onPressed: () {},
-                              //   child: Text(
-                              //     "Forgot Password?",
-                              //     style: GoogleFonts.poppins(
-                              //       fontSize: 14,
-                              //       color: Colors.grey[700],
-                              //     ),
-                              //   ),
-                              // ),
                             ],
                           ),
                         ),

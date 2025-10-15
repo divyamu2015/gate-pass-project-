@@ -48,6 +48,10 @@ dependencies:
   file_picker: ^10.3.3
   excel: ^4.0.6
   image_picker: ^1.2.0
+  typewritertext: ^3.0.9
+  auto_size_text: ^3.0.0
+  animated_toggle_switch: ^0.8.5
+  pretty_qr_code: ^3.5.0
 
 dev_dependencies:
   flutter_test:

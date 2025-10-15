@@ -61,7 +61,7 @@ class _FaceDetectionScreenState extends State<FaceDetectionScreen> {
         ),
       );
     }
-    try { 
+    try {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Marking attendance...')));
@@ -78,7 +78,10 @@ class _FaceDetectionScreenState extends State<FaceDetectionScreen> {
 
       // Navigate to home screen after successful attendance
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomeScreen(studId: studId!,studentId: studentId!,)),
+        MaterialPageRoute(
+          builder: (context) =>
+              HomeScreen(studId: studId!, studentId: studentId!),
+        ),
       );
     } catch (e) {
       print(e.toString());
@@ -95,75 +98,119 @@ class _FaceDetectionScreenState extends State<FaceDetectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 140, 192, 235),
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => HomeScreen(studId: studId!,studentId: studentId!,),
-            ),
-          ),
-          icon: const Icon(Icons.arrow_back),
-        ),
-        title: const Text('Mark Attendance'),
-        centerTitle: true,
-      ),
+      backgroundColor: const Color.fromARGB(255, 7, 7, 7),
+      // appBar: AppBar(
+      //   backgroundColor: const Color.fromARGB(255, 140, 192, 235),
+      //   leading: IconButton(
+      //     onPressed: () => Navigator.of(context).pushReplacement(
+      //       MaterialPageRoute(
+      //         builder: (context) =>
+      //             HomeScreen(studId: studId!, studentId: studentId!),
+      //       ),
+      //     ),
+      //     icon: const Icon(Icons.arrow_back),
+      //   ),
+      //   title: const Text('Mark Attendance'),
+      //   centerTitle: true,
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Face Detection',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Upload a clear photo for attendance.',
-              style: TextStyle(color: Colors.grey[600], fontSize: 16),
-            ),
-            const SizedBox(height: 32),
-            CircleAvatar(
-              radius: 140,
-              backgroundImage: _image != null ? FileImage(_image!) : null,
-              child: _image == null
-                  ? Icon(Icons.person, size: 72, color: Colors.grey[400])
-                  : null,
-              backgroundColor: Colors.grey[200],
-            ),
-            const SizedBox(height: 32),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(),
-                    backgroundColor: const Color.fromARGB(255, 151, 188, 252),
+        child: Card(
+          color: Colors.black87,
+          elevation: 6,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          surfaceTintColor: const Color.fromARGB(255, 8, 8, 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: Alignment.bottomRight,
+                child: TextButton.icon(
+                  onPressed: () => Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          HomeScreen(studId: studId!, studentId: studentId!),
+                    ),
                   ),
-                  onPressed: () => _pickImage(ImageSource.camera),
-                  icon: const Icon(Icons.camera_alt),
-                  label: const Text("Camera"),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Color.fromARGB(255, 146, 146, 146),
+                  ),
+                  label: const Text(
+                    "Back",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 110, 110, 110),
+                      // decoration: TextDecoration.underline,
+                    ),
+                  ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 48),
-                backgroundColor: const Color.fromARGB(255, 136, 161, 230),
-                shape: const StadiumBorder(),
-                elevation: 2,
+                // const SizedBox(width: 16),
               ),
-              onPressed: _image != null ? _uploadImage : null,
-              child: const Text(
-                "Upload & Mark Attendance",
+              const SizedBox(height: 20),
+              Text(
+                'Face Detection',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 28,
+                  color: const Color.fromARGB(179, 88, 88, 88),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 18),
+              Text(
+                'Upload a clear photo for attendance.',
+                style: TextStyle(
+                  color: const Color.fromARGB(255, 231, 230, 230),
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(height: 32),
+              CircleAvatar(
+                radius: 140,
+                backgroundImage: _image != null ? FileImage(_image!) : null,
+                backgroundColor: Colors.grey[200],
+                child: _image == null
+                    ? Icon(Icons.person, size: 72, color: Colors.grey[400])
+                    : null,
+              ),
+              const SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      backgroundColor: const Color.fromARGB(255, 151, 188, 252),
+                    ),
+                    onPressed: () => _pickImage(ImageSource.camera),
+                    icon: const Icon(Icons.camera_alt),
+                    label: const Text("Camera"),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 32),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 48),
+                  backgroundColor: const Color.fromARGB(255, 197, 213, 241),
+                  shape: const StadiumBorder(),
+                  elevation: 2,
+                ),
+                onPressed: _uploadImage,
+                child: const Text(
+                  "Upload & Mark Attendance",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 85, 84, 84),
+                  ),
+                ),
+              ),
+
+              // const SizedBox(height: 50),
+            ],
+          ),
         ),
       ),
     );
