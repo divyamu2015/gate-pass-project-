@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:gate_pass_project/authentication/student_auth/student_login_model.dart';
-import 'package:gate_pass_project/constant_uri.dart';
+import 'package:gate_pass_project/screens/other_screen/constant_uri.dart';
 import 'package:http/http.dart' as http;
 
 Future<StudentLoginModel> studentLoginService({

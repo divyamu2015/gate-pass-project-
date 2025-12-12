@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gate_pass_project/authentication/student_auth/bloc/student_login_bloc.dart';
 //import 'package:gate_pass_project/authentication/student_auth/student_login_view.dart';
 import 'package:gate_pass_project/authentication/tutur_auth/bloc/tutor_login_bloc.dart';
-import 'package:gate_pass_project/screens/splash_screen.dart';
-import 'package:gate_pass_project/screens/view_job_details/bloc/job_details_bloc.dart';
+import 'package:gate_pass_project/screens/student_screens/exit_button_screen/bloc/leave_button_bloc.dart';
+import 'package:gate_pass_project/screens/other_screen/splash_screen.dart';
+import 'package:gate_pass_project/screens/student_screens/view_job_details/bloc/job_details_bloc.dart';
+import 'package:gate_pass_project/screens/student_screens/view_stud_job_application/bloc/view_stud_bloc.dart';
+import 'package:gate_pass_project/screens/student_screens/view_stud_leave_request/bloc/stud_view_bloc.dart';
 //import 'package:gate_pass_project/screens/home_page/home_page.dart';
 //import 'package:gate_pass_project/authentication/student_auth/student_login_view.dart';
 
@@ -24,6 +27,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => TutorLoginBloc()),
         BlocProvider(
           create: (context) => JobDetailsBloc(),
+        //  child: Container(),
+        ),
+        BlocProvider(
+          create: (context) => LeaveButtonBloc(),
+        //  child: Container(),
+        ),
+         BlocProvider(
+          create: (context) => ViewStudBloc(),
+        //  child: Container(),
+        ),
+          BlocProvider(
+          create: (context) => StudViewBloc(),
         //  child: Container(),
         )
       ],
@@ -50,8 +65,9 @@ class MyApp extends StatelessWidget {
         ),
         home:
            // TutorLoginPage(),
-             SplashScreen(),
+            SplashScreen(),
            // JobRulesReg(),
+         //  RoleSelectionScreen()
           // HomeScreen()
       ),
     );

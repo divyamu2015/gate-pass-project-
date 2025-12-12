@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gate_pass_project/authentication/student_auth/bloc/student_login_bloc.dart';
-import 'package:gate_pass_project/screens/home_page/home_page.dart';
+import 'package:gate_pass_project/screens/other_screen/role_selection.dart';
+import 'package:gate_pass_project/screens/student_screens/home_page/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -146,148 +147,190 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // 🎞 Lottie Animation
-                    Image.asset(
-                      "assets/images/student (1).png",
-                      height: 180,
-                    ).animate().fadeIn(duration: 800.ms).slideY(begin: -0.2),
-
-                    const SizedBox(height: 10),
-                    Text(
-                      "Student Login",
-                      style: GoogleFonts.poppins(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+          child: Stack(
+            children: [
+              Positioned(
+                top: 20,
+                right: 20,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return RoleSelectionScreen();
+                        },
                       ),
-                    ).animate().fadeIn(duration: 1.seconds),
-
-                    const SizedBox(height: 30),
-
-                    Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(25.0),
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              // 📧 Email
-                              TextFormField(
-                                controller: emailController,
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  labelText: "Email",
-                                  prefixIcon: const Icon(Icons.email_outlined),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter your email";
-                                  }
-                                  if (!value.contains("@")) {
-                                    return "Enter a valid email";
-                                  }
-                                  return null;
-                                },
-                              ).animate().slideX(begin: -0.2, duration: 500.ms),
-
-                              const SizedBox(height: 20),
-
-                              // 🔑 Password
-                              TextFormField(
-                                controller: StudIdController,
-                                obscureText: _obscurePassword,
-                                decoration: InputDecoration(
-                                  labelText: "Enrollment Number",
-                                  prefixIcon: const Icon(Icons.lock_outline),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _obscurePassword
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _obscurePassword = !_obscurePassword;
-                                      });
-                                    },
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Please enter your enrollment number";
-                                  }
-                                  if (value.length < 6) {
-                                    return "Password must be at least 6 characters";
-                                  }
-                                  return null;
-                                },
-                              ).animate().slideX(begin: 0.2, duration: 500.ms),
-
-                              const SizedBox(height: 30),
-
-                              // 🚀 Login Button
-                              SizedBox(
-                                width: double.infinity,
-                                height: 55,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF2575FC),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    elevation: 5,
-                                  ),
-                                  onPressed: isloading ? null : loginState,
-                                  //  () {
-                                  //   if (_formKey.currentState!.validate()) {
-                                  //     ScaffoldMessenger.of(
-                                  //       context,
-                                  //     ).showSnackBar(
-                                  //       const SnackBar(
-                                  //         content: Text("Logging in..."),
-                                  //         backgroundColor: Colors.green,
-                                  //       ),
-                                  //     );
-                                  //   }
-                                  // },
-                                  child: Text(
-                                    "Login",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ).animate().scale(duration: 500.ms),
-
-                              const SizedBox(height: 15),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ).animate().fadeIn(duration: 1.seconds).slideY(begin: 0.2),
-                  ],
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.rotate_90_degrees_ccw,
+                    color: Color.fromARGB(255, 63, 7, 77),
+                    size: 28,
+                  ),
                 ),
               ),
-            ),
+              Center(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // 🎞 Lottie Animation
+                        Image.asset(
+                              "assets/images/student (1).png",
+                              height: 180,
+                            )
+                            .animate()
+                            .fadeIn(duration: 800.ms)
+                            .slideY(begin: -0.2),
+
+                        const SizedBox(height: 10),
+                        Text(
+                          "Student Login",
+                          style: GoogleFonts.poppins(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ).animate().fadeIn(duration: 1.seconds),
+
+                        const SizedBox(height: 30),
+
+                        Card(
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(25.0),
+                            child: Form(
+                              key: _formKey,
+                              child: Column(
+                                children: [
+                                  // 📧 Email
+                                  TextFormField(
+                                    controller: emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                      labelText: "Email",
+                                      prefixIcon: const Icon(
+                                        Icons.email_outlined,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Please enter your email";
+                                      }
+                                      if (!value.contains("@")) {
+                                        return "Enter a valid email";
+                                      }
+                                      return null;
+                                    },
+                                  ).animate().slideX(
+                                    begin: -0.2,
+                                    duration: 500.ms,
+                                  ),
+
+                                  const SizedBox(height: 20),
+
+                                  // 🔑 Password
+                                  TextFormField(
+                                    controller: StudIdController,
+                                    obscureText: _obscurePassword,
+                                    decoration: InputDecoration(
+                                      labelText: "Enrollment Number",
+                                      prefixIcon: const Icon(
+                                        Icons.lock_outline,
+                                      ),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _obscurePassword
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _obscurePassword =
+                                                !_obscurePassword;
+                                          });
+                                        },
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Please enter your enrollment number";
+                                      }
+                                      if (value.length < 6) {
+                                        return "Password must be at least 6 characters";
+                                      }
+                                      return null;
+                                    },
+                                  ).animate().slideX(
+                                    begin: 0.2,
+                                    duration: 500.ms,
+                                  ),
+
+                                  const SizedBox(height: 30),
+
+                                  // 🚀 Login Button
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 55,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color(
+                                          0xFF2575FC,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            15,
+                                          ),
+                                        ),
+                                        elevation: 5,
+                                      ),
+                                      onPressed: isloading ? null : loginState,
+                                      //  () {
+                                      //   if (_formKey.currentState!.validate()) {
+                                      //     ScaffoldMessenger.of(
+                                      //       context,
+                                      //     ).showSnackBar(
+                                      //       const SnackBar(
+                                      //         content: Text("Logging in..."),
+                                      //         backgroundColor: Colors.green,
+                                      //       ),
+                                      //     );
+                                      //   }
+                                      // },
+                                      child: Text(
+                                        "Login",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ).animate().scale(duration: 500.ms),
+
+                                  const SizedBox(height: 15),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ).animate().fadeIn(duration: 1.seconds).slideY(begin: 0.2),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
