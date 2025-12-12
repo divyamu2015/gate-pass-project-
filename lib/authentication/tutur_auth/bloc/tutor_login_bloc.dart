@@ -10,7 +10,6 @@ part 'tutor_login_bloc.freezed.dart';
 class TutorLoginBloc extends Bloc<TutorLoginEvent, TutorLoginState> {
   TutorLoginBloc() : super(_Initial()) {
     on<TutorLoginEvent>((event, emit) async {
-      // TODO: implement event handler
       if (event is _TutorLogin) {
         emit(const TutorLoginState.loading());
         try {

@@ -160,6 +160,7 @@ class _LeaveRequestProcessState extends State<LeaveRequestProcess> {
                   LinearProgressIndicator(
                     value: progress,
                     minHeight: 10,
+                    // ignore: deprecated_member_use
                     backgroundColor: inactiveColor.withOpacity(0.3),
                     color: activeColor,
                   ),

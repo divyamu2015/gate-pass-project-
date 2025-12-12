@@ -17,7 +17,7 @@ class StudentLoginPage extends StatefulWidget {
 class _StudentLoginPageState extends State<StudentLoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController StudIdController = TextEditingController();
+  final TextEditingController studIdController = TextEditingController();
   bool _obscurePassword = true;
   bool isloading = false;
   int? userId;
@@ -25,15 +25,15 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
 
   Future<void> loginState() async {
     if (_formKey.currentState!.validate()) {
-      print(123);
+    //  print(123);
       FocusScope.of(context).unfocus();
       setState(() {
         isloading = true;
       });
       String studEmail = emailController.text.trim();
-      String studId = StudIdController.text.trim();
+      String studId = studIdController.text.trim();
 
-      print('after validation');
+     // print('after validation');
 
       if (studId.isEmpty || studEmail.isEmpty) {
         showError("Please enter all details");
@@ -59,26 +59,26 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
   Future<void> storeUserId(int userId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('user_id', userId);
-    print('User ID stored: $userId');
+   // print('User ID stored: $userId');
   }
 
   Future<int?> getUserId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     userId = prefs.getInt('user_id');
-    print("Retrieved User ID: $userId");
+   // print("Retrieved User ID: $userId");
     return userId;
   }
 
   Future<void> storeStudentId(String studId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('student_id', studId);
-    print('Student ID stored: $studId');
+   // print('Student ID stored: $studId');
   }
 
   Future<String?> getStudentId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     studentId = prefs.getString('student_id');
-    print("Retrieved Student ID: $studentId");
+    //print("Retrieved Student ID: $studentId");
     return studentId;
   }
 
@@ -239,7 +239,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
 
                                   // 🔑 Password
                                   TextFormField(
-                                    controller: StudIdController,
+                                    controller: studIdController,
                                     obscureText: _obscurePassword,
                                     decoration: InputDecoration(
                                       labelText: "Enrollment Number",

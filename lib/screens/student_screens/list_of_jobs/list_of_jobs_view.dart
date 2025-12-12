@@ -26,14 +26,14 @@ class _CompanyListViewState extends State<CompanyListView> {
  Future<void> storeCompanyId(String companyId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('id', companyId);
-    print('ID stored: $companyId');
+   // print('ID stored: $companyId');
     setState(() => storedCompanyId = companyId);
   }
 
   Future<void> loadStoredCompanyId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? companyId = prefs.getString('id');
-    print("Retrieved Company ID: $companyId");
+   // print("Retrieved Company ID: $companyId");
     setState(() => storedCompanyId = companyId);
   }
 
@@ -128,7 +128,8 @@ class _CompanyListViewState extends State<CompanyListView> {
                     ),
                    onTap: () async {
                       await storeCompanyId(company.id.toString());
-                      print("Tapped on ${company.name}");
+                    //  print("Tapped on ${company.name}");
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => JobsListScreen(

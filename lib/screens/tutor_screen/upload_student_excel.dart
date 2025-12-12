@@ -124,6 +124,7 @@ class _StudentExcelUploaderState extends State<StudentExcelUploader> {
   Future<void> _deleteRowAt(int index) async {
     final row = _rows[index];
     final id = _extractStudentId(row);
+    // ignore: unused_local_variable
     bool serverOk = false;
 
     if (id != null) {
@@ -133,16 +134,19 @@ class _StudentExcelUploaderState extends State<StudentExcelUploader> {
         final resp = await http.delete(uri);
         if (resp.statusCode == 204 || resp.statusCode == 200) {
           serverOk = true;
+          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Deleted on server')),
           );
         } else {
           // server responded but not deleted
+          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Server delete failed: ${resp.statusCode}')),
           );
         }
       } catch (e) {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Server delete error: $e')),
         );

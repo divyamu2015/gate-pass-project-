@@ -25,7 +25,7 @@ class _TutorLoginPageState extends State<TutorLoginPage> {
 
   Future<void> loginState() async {
     if (_formKey.currentState!.validate()) {
-      print(123);
+     // print(123);
       FocusScope.of(context).unfocus();
       setState(() {
         isloading = true;
@@ -33,7 +33,7 @@ class _TutorLoginPageState extends State<TutorLoginPage> {
       String tutEmail = emailController.text.trim();
       String tutId = tutorIdController.text.trim();
 
-      print('after validation');
+     // print('after validation');
 
       if (tutId.isEmpty || tutEmail.isEmpty) {
         showError("Please enter all details");
@@ -59,26 +59,26 @@ class _TutorLoginPageState extends State<TutorLoginPage> {
   Future<void> storeUserId(int tutorId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('user_id', tutorId);
-    print('User ID stored: $tutorId');
+  //  print('User ID stored: $tutorId');
   }
 
   Future<int?> getUserId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     tutorId = prefs.getInt('user_id');
-    print("Retrieved User ID: $tutorId");
+   // print("Retrieved User ID: $tutorId");
     return tutorId;
   }
 
   Future<void> storeName(String tutorName) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('name', tutorName);
-    print('User ID stored: $tutorId');
+   // print('User ID stored: $tutorId');
   }
 
   Future<String?> getName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     tutorName = prefs.getString('name');
-    print("Retrieved User ID: $tutorName");
+   // print("Retrieved User ID: $tutorName");
     return tutorName;
   }
 

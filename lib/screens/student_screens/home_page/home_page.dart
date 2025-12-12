@@ -30,9 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
     'assets/images/v.jpg',
     'assets/images/job.jpg',
   ];
-  final PageController _carouselController = PageController();
+  //final PageController _carouselController = PageController();
 
-  final int _carouselNumPages = 3;
+ //final int _carouselNumPages = 3;
   int _currentPage = 0;
   Timer? _timer;
 
@@ -63,8 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
     _pageController = PageController(initialPage: _tabIndex);
     studId = widget.studId;
     studentId = widget.studentId;
-    print("User ID in Home Screen: $studId");
-    print("studentId in Home Screen: $studentId");
+   // print("User ID in Home Screen: $studId");
+   // print("studentId in Home Screen: $studentId");
   }
 
   @override
@@ -196,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 // Your custom button action for this page
                                 if (index == 0) {
-                                  print('You are pressed button $index');
+                               //   print('You are pressed button $index');
                                 } else if (index == 1) {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
@@ -211,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                                 }
-                                print("Button pressed for image $index");
+                               // print("Button pressed for image $index");
                               },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(

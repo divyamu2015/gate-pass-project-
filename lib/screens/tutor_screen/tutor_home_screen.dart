@@ -152,6 +152,7 @@ class _TutorDashboardState extends State<TutorDashboard> {
             border: Border.all(color: Colors.white, width: 2),
             boxShadow: [
               BoxShadow(
+                // ignore: deprecated_member_use
                 color: Colors.black.withOpacity(0.1),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
@@ -326,6 +327,7 @@ class _TutorDashboardState extends State<TutorDashboard> {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: Colors.white.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
@@ -338,6 +340,7 @@ class _TutorDashboardState extends State<TutorDashboard> {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: Colors.white.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
@@ -353,6 +356,7 @@ class _TutorDashboardState extends State<TutorDashboard> {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
+                      // ignore: deprecated_member_use
                       color: Colors.white.withOpacity(0.2),
                       shape: BoxShape.circle,
                     ),
@@ -446,119 +450,119 @@ Future<void> _showLogoutDialog(BuildContext context) async {
       },
     );
   }
-  Widget _buildRecentActivity() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Recent Activity',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1E293B),
-              ),
-            ),
-            Text(
-              'View All',
-              style: TextStyle(
-                color: Color(0xFF6366F1),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 20,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              _buildActivityItem(
-                'New leave request from John Doe',
-                '2 min ago',
-                Iconsax.calendar_remove,
-                Colors.orange,
-              ),
-              _buildActivityItem(
-                'Job application submitted by Jane Smith',
-                '1 hour ago',
-                Iconsax.briefcase,
-                Colors.green,
-              ),
-              _buildActivityItem(
-                'Attendance report generated for today',
-                '2 hours ago',
-                Iconsax.chart_square,
-                Colors.blue,
-              ),
-              _buildActivityItem(
-                'Excel file uploaded successfully',
-                '4 hours ago',
-                Iconsax.document_upload,
-                Colors.purple,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+  // Widget _buildRecentActivity() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //         children: [
+  //           Text(
+  //             'Recent Activity',
+  //             style: TextStyle(
+  //               fontSize: 20,
+  //               fontWeight: FontWeight.bold,
+  //               color: Color(0xFF1E293B),
+  //             ),
+  //           ),
+  //           Text(
+  //             'View All',
+  //             style: TextStyle(
+  //               color: Color(0xFF6366F1),
+  //               fontWeight: FontWeight.w600,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //       const SizedBox(height: 16),
+  //       Container(
+  //         decoration: BoxDecoration(
+  //           color: Colors.white,
+  //           borderRadius: BorderRadius.circular(20),
+  //           boxShadow: [
+  //             BoxShadow(
+  //               color: Colors.black.withOpacity(0.05),
+  //               blurRadius: 20,
+  //               offset: const Offset(0, 4),
+  //             ),
+  //           ],
+  //         ),
+  //         padding: const EdgeInsets.all(16),
+  //         child: Column(
+  //           children: [
+  //             _buildActivityItem(
+  //               'New leave request from John Doe',
+  //               '2 min ago',
+  //               Iconsax.calendar_remove,
+  //               Colors.orange,
+  //             ),
+  //             _buildActivityItem(
+  //               'Job application submitted by Jane Smith',
+  //               '1 hour ago',
+  //               Iconsax.briefcase,
+  //               Colors.green,
+  //             ),
+  //             _buildActivityItem(
+  //               'Attendance report generated for today',
+  //               '2 hours ago',
+  //               Iconsax.chart_square,
+  //               Colors.blue,
+  //             ),
+  //             _buildActivityItem(
+  //               'Excel file uploaded successfully',
+  //               '4 hours ago',
+  //               Iconsax.document_upload,
+  //               Colors.purple,
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
-  Widget _buildActivityItem(
-    String title,
-    String time,
-    IconData icon,
-    Color color,
-  ) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(icon, color: color, size: 20),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF1E293B),
-                  ),
-                ),
-                Text(
-                  time,
-                  style: TextStyle(fontSize: 12, color: Colors.grey[500]),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildActivityItem(
+  //   String title,
+  //   String time,
+  //   IconData icon,
+  //   Color color,
+  // ) {
+  //   return Container(
+  //     margin: const EdgeInsets.only(bottom: 12),
+  //     child: Row(
+  //       children: [
+  //         Container(
+  //           padding: const EdgeInsets.all(8),
+  //           decoration: BoxDecoration(
+  //             color: color.withOpacity(0.1),
+  //             borderRadius: BorderRadius.circular(12),
+  //           ),
+  //           child: Icon(icon, color: color, size: 20),
+  //         ),
+  //         const SizedBox(width: 12),
+  //         Expanded(
+  //           child: Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               Text(
+  //                 title,
+  //                 style: TextStyle(
+  //                   fontSize: 14,
+  //                   fontWeight: FontWeight.w500,
+  //                   color: Color(0xFF1E293B),
+  //                 ),
+  //               ),
+  //               Text(
+  //                 time,
+  //                 style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
@@ -592,26 +596,26 @@ Future<void> _showLogoutDialog(BuildContext context) async {
     );
   }
 
-  void _showModuleDialog(String moduleName) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(moduleName),
-        content: Text(
-          '$moduleName module would open here with full functionality.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Close'),
-          ),
-          ElevatedButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('Open'),
-          ),
-        ],
-      ),
-    );
-  }
+  // void _showModuleDialog(String moduleName) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) => AlertDialog(
+  //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+  //       title: Text(moduleName),
+  //       content: Text(
+  //         '$moduleName module would open here with full functionality.',
+  //       ),
+  //       actions: [
+  //         TextButton(
+  //           onPressed: () => Navigator.pop(context),
+  //           child: Text('Close'),
+  //         ),
+  //         ElevatedButton(
+  //           onPressed: () => Navigator.pop(context),
+  //           child: Text('Open'),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

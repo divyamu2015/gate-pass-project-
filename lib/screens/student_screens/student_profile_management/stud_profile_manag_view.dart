@@ -142,12 +142,14 @@ class _StudentProfileScreenState extends State<StudentProfileScreen>
           _studentFuture = Future.value(decodedResponse['data']);
           _imageFile = null;
         });
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Profile picture updated successfully!'),
           ),
         );
       } else {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -158,6 +160,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen>
       }
     } catch (e) {
       ScaffoldMessenger.of(
+        // ignore: use_build_context_synchronously
         context,
       ).showSnackBar(SnackBar(content: Text('An error occurred: $e')));
     }

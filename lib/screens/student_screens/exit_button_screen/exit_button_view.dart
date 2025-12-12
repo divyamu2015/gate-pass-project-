@@ -38,7 +38,7 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
   void initState() {
     super.initState();
     studId = widget.studId;
-    print('LeaveRequestScreen  $studId');
+   // print('LeaveRequestScreen  $studId');
     leaveDate = DateTime.now();
     getData();
   }
@@ -46,7 +46,7 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
   Future<void> getData() async {
     final url =
         'https://417sptdw-8003.inc1.devtunnels.ms/userapp/student/$studId/';
-    print('LeaveRequestScreen url;=$url');
+   // print('LeaveRequestScreen url;=$url');
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -55,13 +55,13 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
         setState(() {
           students = Student.fromJson(data);
           hodId = students!.hod;
-          print('Leaverequest Hod= $hodId');
+        //  print('Leaverequest Hod= $hodId');
           tutorId = students!.tutor;
-          print('Leaverequest Hod= $tutorId');
+         // print('Leaverequest Hod= $tutorId');
           departmentId = students!.department;
-          print('Leaverequest department= $department');
+         // print('Leaverequest department= $department');
           courseId = students!.course;
-          print('Leaverequest course= $courseId');
+         // print('Leaverequest course= $courseId');
           nameController.text = students!.name;
           deptController.text = students!.departmentName;
           tutorController.text = students!.tutorName;
@@ -123,7 +123,7 @@ class _LeaveRequestScreenState extends State<LeaveRequestScreen> {
             },
             success: (response) {
               setState(() => isloading = false);
-              final status = response.status ?? '';
+              final status = response.status ;
 
               if (status == 'HOD Approved') {
                 // Only now show success + navigate to QR screen
@@ -520,6 +520,7 @@ class ProcessTimeline extends StatelessWidget {
             child: LinearProgressIndicator(
               value: progress,
               minHeight: 10,
+              // ignore: deprecated_member_use
               backgroundColor: inactiveColor.withOpacity(0.3),
               color: activeColor,
             ),

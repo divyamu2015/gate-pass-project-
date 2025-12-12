@@ -56,6 +56,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
             Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
+                // ignore: deprecated_member_use
                 color: Colors.white.withOpacity(0.25),
                 borderRadius: BorderRadius.circular(30),
                 border: Border.all(color: Colors.white70, width: 1.5),
@@ -87,6 +88,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
                 ),
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Colors.black.withOpacity(0.15),
                     blurRadius: 20,
                     offset: const Offset(0, 8),
@@ -206,6 +208,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen>
           boxShadow: isSelected
               ? [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.5),
                     blurRadius: 12,
                     spreadRadius: 1,

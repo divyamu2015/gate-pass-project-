@@ -21,7 +21,7 @@ class _ViewStudentLeaveRequestState extends State<ViewStudentLeaveRequest> {
   void initState() {
     super.initState();
     futureRequests = fetchTutorLeaveRequests(widget.tutorId);
-    print(futureRequests);
+   // print(futureRequests);
   }
 
   @override
@@ -54,7 +54,7 @@ class _ViewStudentLeaveRequestState extends State<ViewStudentLeaveRequest> {
           }
 
           final allRequests = snapshot.data ?? [];
-          print(allRequests);
+         // print(allRequests);
 
           // Clean, normalize & match "Not Urgent"
           final requests = allRequests.where((item) {
@@ -135,6 +135,7 @@ class _ViewStudentLeaveRequestState extends State<ViewStudentLeaveRequest> {
       _showForwardedDialog(req.hodName);
     } else {
       ScaffoldMessenger.of(
+        // ignore: use_build_context_synchronously
         context,
       ).showSnackBar(SnackBar(content: Text("Failed to update request")));
     }
@@ -144,7 +145,7 @@ class _ViewStudentLeaveRequestState extends State<ViewStudentLeaveRequest> {
     final url = Uri.parse(
       "https://417sptdw-8003.inc1.devtunnels.ms/userapp/tutor-requests/${widget.tutorId}/approve/$id/",
     );
-    print(url);
+   // print(url);
 
     final response = await http.post(
       url,
@@ -159,7 +160,7 @@ class _ViewStudentLeaveRequestState extends State<ViewStudentLeaveRequest> {
     final url = Uri.parse(
       "https://417sptdw-8003.inc1.devtunnels.ms/userapp/tutor-requests/${widget.tutorId}/approve/$id/",
     );
-    print(url);
+   // print(url);
 
     final response = await http.post(
       url,
@@ -190,6 +191,7 @@ void _rejectRequest(LeaveRequestModel req) async {
       req.status = "Rejected by Tutor";
     });
 
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Request rejected successfully"),
@@ -197,6 +199,7 @@ void _rejectRequest(LeaveRequestModel req) async {
       ),
     );
   } else {
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Failed to reject request"),
@@ -221,6 +224,7 @@ void _rejectRequest(LeaveRequestModel req) async {
         ),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.deepPurple.withOpacity(0.08),
             blurRadius: 12,
             offset: const Offset(0, 6),

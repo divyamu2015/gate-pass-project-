@@ -136,7 +136,7 @@ class _JobsListScreenState extends State<JobsListScreen> {
   void initState() {
     super.initState();
     studentId = widget.studentId;
-    print('JobsListScreen===$studentId');
+   // print('JobsListScreen===$studentId');
     _fetchCompanyJobs();
   }
 
@@ -204,23 +204,26 @@ class _JobsListScreenState extends State<JobsListScreen> {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
 
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(data["message"] ?? "Application submitted!")),
         );
       } else {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Failed: ${response.statusCode}")),
         );
       }
     } catch (e) {
       ScaffoldMessenger.of(
+        // ignore: use_build_context_synchronously
         context,
       ).showSnackBar(SnackBar(content: Text("Error: $e")));
     }
   }
 
   Widget _buildHeader() {
-    double h = MediaQuery.sizeOf(context).height;
+   // double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;
 
     // decides image provider (network or local fallback)
@@ -472,6 +475,7 @@ class _JobsListScreenState extends State<JobsListScreen> {
     // 🔥 each job has its own expanded state
     final isExpanded = expandedJobs[job.id] ?? false;
 
+    // ignore: unused_local_variable
     final logoUrl = job.logo.isNotEmpty
         ? 'https://417sptdw-8003.inc1.devtunnels.ms${job.logo}'
         : null;
@@ -633,9 +637,11 @@ class JobDetailPage extends StatefulWidget {
 }
 
 class _JobDetailPageState extends State<JobDetailPage> {
+  // ignore: unused_field
   File? _selectedResume;
   bool uploading = false;
 
+  // ignore: unused_element
   Future<void> _pickResume() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -652,6 +658,7 @@ class _JobDetailPageState extends State<JobDetailPage> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
+        // ignore: deprecated_member_use
         color: color.withOpacity(0.25),
         borderRadius: BorderRadius.circular(14),
       ),

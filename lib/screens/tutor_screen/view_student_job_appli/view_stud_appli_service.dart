@@ -8,7 +8,7 @@ Future<List<ApplicationModel>> fetchAppliedStudents(int tutorId) async {
   );
 
   final response = await http.get(url);
-  print(response.body);
+ // print(response.body);
 
   if (response.statusCode == 200) {
     List list = jsonDecode(response.body);
@@ -22,9 +22,9 @@ Future<bool> approveApplication(int applicationId, int tutorId) async {
   final url = Uri.parse(
     "https://417sptdw-8003.inc1.devtunnels.ms/userapp/tutor/$tutorId/application/$applicationId/approve/",
   );
-  print(url);
+ // print(url);
   final res = await http.post(url);
-  print(res);
+ // print(res);
   return res.statusCode == 200 || res.statusCode == 201;
 }
 

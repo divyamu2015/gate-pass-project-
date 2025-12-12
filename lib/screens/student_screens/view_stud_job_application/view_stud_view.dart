@@ -105,6 +105,7 @@ class _JobApplicationDetailsScreenState
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.07),
             blurRadius: 12,
             offset: const Offset(0, 6),

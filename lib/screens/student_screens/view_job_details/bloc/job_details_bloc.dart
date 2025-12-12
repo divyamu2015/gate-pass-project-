@@ -10,7 +10,6 @@ part 'job_details_bloc.freezed.dart';
 class JobDetailsBloc extends Bloc<JobDetailsEvent, JobDetailsState> {
   JobDetailsBloc() : super(_Initial()) {
     on<JobDetailsEvent>((event, emit) async {
-      // TODO: implement event handler
        if (event is _ViewJobDetails) {
         emit(const JobDetailsState.loading());
         try {

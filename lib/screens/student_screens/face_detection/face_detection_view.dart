@@ -29,8 +29,8 @@ class _FaceDetectionScreenState extends State<FaceDetectionScreen> {
     super.initState();
     studId = widget.studId;
     studentId = widget.studentId;
-    print("face detection =$studId");
-    print("face detection =$studentId");
+    //print("face detection =$studId");
+   // print("face detection =$studentId");
   }
 
   Future<void> _pickImage(ImageSource source) async {
@@ -69,6 +69,7 @@ class _FaceDetectionScreenState extends State<FaceDetectionScreen> {
       final AttendanceResponse response = await _attendanceService
           .markAttendance(imageFile: _image!, studentId: studentId!);
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Success! ${response.message}'),
@@ -77,6 +78,7 @@ class _FaceDetectionScreenState extends State<FaceDetectionScreen> {
       );
 
       // Navigate to home screen after successful attendance
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) =>
@@ -84,7 +86,8 @@ class _FaceDetectionScreenState extends State<FaceDetectionScreen> {
         ),
       );
     } catch (e) {
-      print(e.toString());
+      //print(e.toString());
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.toString()), // Show actual error message
